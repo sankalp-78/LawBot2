@@ -101,13 +101,3 @@ We welcome contributions to improve LawBot2! To contribute:
 
 Thank you for using LawBot2!
 
-```
-
----
-
-Let me know if you'd like help adding:
-- Screenshot banners
-- `.env.example` template
-- Deployment instructions (e.g., Render, Vercel)
-- Badges (build status, license, etc.)
-```
