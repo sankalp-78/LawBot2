@@ -1,0 +1,411 @@
+/* Main container for the entire chat application */
+.chat-page-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--background, var(--background-color));
+}
+
+/* Chat page with flex layout */
+.chat-page {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sidebar for chat list */
+.chat-list-container {
+  width: 300px;
+  min-width: 300px;
+  height: 100%;
+  background-color: var(--card-background, #2d2d2d);
+  border-right: 1px solid var(--border, #444);
+  transition: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Main content area for the chat window */
+.chat-window-container {
+  flex: 1;
+  height: 100%;
+  min-width: 0; /* Allow shrinking */
+  position: relative;
+  background-color: var(--background, #121212);
+  transition: none;
+  width: calc(100% - 300px);
+}
+
+/* States for showing/hiding chat list */
+.chat-list-visible .chat-list-container {
+  transform: translateX(0);
+  min-width: 300px;
+  width: 300px;
+}
+
+.chat-list-hidden .chat-list-container {
+  transform: translateX(-100%);
+  min-width: 0;
+  width: 0;
+}
+
+.chat-list-hidden .chat-window-container {
+  width: 100%;
+}
+
+/* Reset transitions for chat elements */
+.chat-list-container,
+.chat-window-container,
+.toggle-chat-list-btn {
+  transition: none;
+}
+
+/* Fixed-position toggle button that doesn't move with animations */
+.toggle-chat-list-btn {
+  position: fixed;
+  width: 24px;
+  height: 60px;
+  background-color: var(--primary, #4caf50);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Position toggle button based on sidebar state - adjust for full-page layout */
+.chat-list-visible .toggle-chat-list-btn {
+  left: 300px;
+  border-radius: 0 4px 4px 0;
+}
+
+.chat-list-hidden .toggle-chat-list-btn {
+  left: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 1200px) {
+  .chat-list-visible .toggle-chat-list-btn {
+    left: 300px;
+  }
+  
+  .chat-list-hidden .toggle-chat-list-btn {
+    left: 0;
+  }
+}
+
+/* Only apply transition to the containers after initial render */
+@media (min-width: 1px) {
+  .chat-list-container {
+    transition: transform 0.3s ease, min-width 0.3s ease, width 0.3s ease;
+  }
+  
+  .chat-window-container {
+    transition: width 0.3s ease;
+  }
+  
+  .toggle-chat-list-btn {
+    transition: left 0.3s ease;
+  }
+}
+
+/* Ensure chat components fill their containers */
+.chat-list-container .chat-list,
+.chat-window-container .chat-window {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .chat-page {
+    flex-direction: column;
+  }
+  
+  .chat-list-container {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 40vh;
+    max-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid var(--border, #444);
+    transform: translateY(0) !important;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .chat-window-container {
+    flex: 1;
+    height: 60vh;
+  }
+  
+  .chat-list-hidden .chat-list-container {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(0) !important;
+  }
+  
+  .toggle-chat-list-btn {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    left: auto !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transform: none;
+  }
+  
+  .chat-list-visible .toggle-chat-list-btn,
+  .chat-list-hidden .toggle-chat-list-btn {
+    left: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-list-container {
+    height: 50vh;
+    max-height: 50vh;
+  }
+  
+  .chat-window-container {
+    height: 50vh;
+  }
+  
+  .toggle-chat-list-btn {
+    width: 36px;
+    height: 36px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+.chat-list-header {
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: 600;
+  color: var(--text-primary, var(--text-color));
+  padding: var(--space-sm, 0.5rem) 0;
+  margin-bottom: var(--space-md, 1rem);
+  border-bottom: 2px solid var(--primary, var(--link-color));
+}
+
+.chat-page > .chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Scrollbar styling */
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: var(--background, var(--background-color));
+  border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: var(--primary, var(--link-color));
+  border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark, var(--button-bg));
+}
+
+/* Messages container */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md, 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 1rem);
+  scroll-behavior: smooth;
+}
+
+/* Message styling */
+.message {
+  margin: var(--space-xs, 0.25rem) 0;
+  padding: var(--space-md, 0.8rem);
+  border-radius: var(--radius-lg, var(--border-radius));
+  max-width: 80%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.message.user {
+  background-color: var(--primary, var(--button-bg));
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 0;
+}
+
+.message.bot {
+  background-color: var(--card-background, var(--background-color));
+  color: var(--text-primary, var(--text-color));
+  margin-right: auto;
+  border-bottom-left-radius: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.message pre {
+  white-space: pre-wrap;
+  overflow-x: auto;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: var(--space-sm, 0.5rem);
+  border-radius: var(--radius-sm, 0.25rem);
+  margin: var(--space-sm, 0.5rem) 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.message code {
+  font-family: 'Courier New', monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Input area at bottom */
+.input-area {
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid var(--link-color);
+  background-color: var(--card-bg);
+}
+
+/* Message input area */
+.message-input-container {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  margin-top: auto;
+  border: 1px solid var(--link-color);
+}
+
+.message-input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 2px solid var(--link-color);
+  border-radius: var(--border-radius);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  resize: none;
+  min-height: 40px;
+  max-height: 120px;
+}
+
+.message-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.2);
+}
+
+/* File input styling */
+.file-input-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.file-input-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid var(--link-color);
+}
+
+.file-input-label:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.file-input {
+  display: none;
+}
+
+.send-button {
+  padding: 0.8rem 1.5rem;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--link-color);
+}
+
+.send-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Add more responsive media queries for better sizing */
+@media (max-height: 768px) {
+  .chat-page {
+    max-height: 95vh;
+  }
+}
+
+@media (max-height: 600px) {
+  .chat-page {
+    max-height: 100vh;
+  }
+  
+  .toggle-chat-list-btn {
+    height: 50px;
+    width: 20px;
+  }
+}
+
+/* Handle different screen widths */
+@media (max-width: 768px) {
+  .chat-page {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-list-container {
+    height: 40vh;
+    max-height: 40vh;
+  }
+  
+  .toggle-chat-list-btn {
+    width: 36px;
+    height: 36px;
+    bottom: 12px;
+    right: 12px;
+  }
+}

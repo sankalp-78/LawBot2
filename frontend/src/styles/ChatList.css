@@ -1,0 +1,310 @@
+.chat-list {
+  width: 300px;
+  background-color: var(--card-background);
+  border-right: 1px solid var(--border);
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  transition: width var(--transition-normal);
+  -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
+  overscroll-behavior: contain; /* Prevent scroll chain */
+  will-change: transform; /* Optimize for animations */
+  transform: translateZ(0); /* Force GPU acceleration */
+}
+
+.chat-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background-color: var(--card-background);
+  z-index: 10;
+}
+
+.chat-list h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.new-chat-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.new-chat-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.new-chat-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.new-chat-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.chat-items-container {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  background-color: var(--background);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  overflow: hidden;
+  position: relative;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.chat-item:hover {
+  background-color: var(--card-background);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--border);
+}
+
+.chat-item.active {
+  border-left: 3px solid var(--primary);
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.chat-item-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex: 1;
+  overflow: hidden;
+  min-width: 0; /* Important for text truncation */
+}
+
+.chat-item-icon {
+  min-width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: rgba(59, 130, 246, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.chat-item-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.chat-item-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0; /* Important for text truncation */
+  flex: 1;
+}
+
+.chat-item-message {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.chat-item-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  padding: 0;
+  opacity: 0.5;
+  flex-shrink: 0;
+  margin-left: var(--space-xs);
+}
+
+.chat-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  z-index: 2;
+}
+
+.delete-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.no-chats {
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.loading, .error-message {
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.error-message {
+  color: var(--error);
+  background-color: rgba(239, 68, 68, 0.1);
+  border-radius: var(--radius-md);
+  margin: var(--space-md);
+  padding: var(--space-md);
+}
+
+/* Confirmation Dialog */
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.confirmation-dialog {
+  background-color: var(--card-background);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  width: 90%;
+  max-width: 400px;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s ease-out;
+}
+
+.confirmation-dialog h4 {
+  margin-top: 0;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+}
+
+.confirmation-dialog p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+}
+
+.cancel-btn, .confirm-btn {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.cancel-btn:hover {
+  background-color: var(--background);
+}
+
+.confirm-btn {
+  background-color: var(--error);
+  color: white;
+  border: none;
+}
+
+.confirm-btn:hover {
+  background-color: #e53935;
+  transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-list {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: 40vh;
+  }
+  
+  .delete-btn {
+    opacity: 1;
+  }
+}

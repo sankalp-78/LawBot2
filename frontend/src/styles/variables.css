@@ -1,0 +1,199 @@
+:root {
+  /* Spacing system - based on 0.25rem (4px) increments */
+  --spacing-unit: 0.25rem;
+  --space-xs: calc(var(--spacing-unit) * 1);  /* 0.25rem or 4px */
+  --space-sm: calc(var(--spacing-unit) * 2);  /* 0.5rem or 8px */
+  --space-md: calc(var(--spacing-unit) * 4);  /* 1rem or 16px */
+  --space-lg: calc(var(--spacing-unit) * 6);  /* 1.5rem or 24px */
+  --space-xl: calc(var(--spacing-unit) * 8);  /* 2rem or 32px */
+  --space-xxl: calc(var(--spacing-unit) * 12); /* 3rem or 48px */
+  
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Z-index layers */
+  --z-background: -1;
+  --z-default: 1;
+  --z-overlay: 10;
+  --z-modal: 100;
+  --z-tooltip: 500;
+  
+  /* Layout */
+  --header-height: 60px;
+  --sidebar-width: 260px;
+  --max-content-width: 1400px;
+  
+  /* Typography */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-xxl: 1.5rem;
+  
+  /* Colors - Light theme */
+  --primary: #4caf50;
+  --primary-light: #80e27e;
+  --primary-dark: #087f23;
+  --secondary: #4a90e2;
+  --background: #ffffff;
+  --card-background: #f5f5f5;
+  --text-primary: #282c34;
+  --text-secondary: #666666;
+  --border: #dddddd;
+  --error: #ff5252;
+  --success: #4caf50;
+  --warning: #ff9800;
+  --info: #2196f3;
+  
+  /* Hover states */
+  --hover-background: #f0f0f0;
+  
+  /* Responsive breakpoints */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+/* Dark theme variables */
+[data-theme='dark'] {
+  --primary: #5cbb60;
+  --primary-light: #8aeea1;
+  --primary-dark: #1b5e20;
+  --secondary: #64b5f6;
+  --background: #121212;
+  --card-background: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #aaaaaa;
+  --border: #333333;
+  --hover-background: #2d2d2d;
+}
+
+/* Media query utility classes */
+.desktop-only {
+  display: none;
+}
+
+.tablet-only {
+  display: none;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .desktop-only {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tablet-only {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+}
+
+/* Display utility for flex layouts */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+/* Margin & padding utility classes */
+.m-0 { margin: 0; }
+.m-xs { margin: var(--space-xs); }
+.m-sm { margin: var(--space-sm); }
+.m-md { margin: var(--space-md); }
+.m-lg { margin: var(--space-lg); }
+.m-xl { margin: var(--space-xl); }
+
+.p-0 { padding: 0; }
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+
+/* Grid utility classes */
+.grid {
+  display: grid;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-3, .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+  }
+} 

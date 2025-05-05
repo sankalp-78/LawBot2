@@ -1,0 +1,50 @@
+.register {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .register h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .register form div {
+    margin-bottom: 15px;
+  }
+  
+  .register label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+  }
+  
+  .register input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .register button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .register button:hover {
+    background: #0056b3;
+  }
+  
+  .register .error {
+    color: red;
+    text-align: center;
+    margin-bottom: 15px;
+  }
