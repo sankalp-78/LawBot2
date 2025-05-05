@@ -1,7 +1,6 @@
 
 ---
 
-````markdown
 # LawBot2
 
 **LawBot2** is an AI-powered legal assistant designed to streamline legal research and support users with accurate, context-aware responses. This repository contains the full source code for both frontend and backend components.
@@ -20,8 +19,7 @@ Follow the steps below to set up the project locally.
 1. Clone the repository:
    ```bash
    git clone https://github.com/sankalp-78/LawBot2.git
-   cd LawBot2
-````
+   cd LawBot2```
 
 2. Set up environment variables:
 
