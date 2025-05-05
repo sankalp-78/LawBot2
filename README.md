@@ -2,9 +2,9 @@
 ---
 
 ````markdown
-# LawBot1
+# LawBot2
 
-**LawBot1** is an AI-powered legal assistant designed to streamline legal research and support users with accurate, context-aware responses. This repository contains the full source code for both frontend and backend components.
+**LawBot2** is an AI-powered legal assistant designed to streamline legal research and support users with accurate, context-aware responses. This repository contains the full source code for both frontend and backend components.
 
 ## Features
 
@@ -19,8 +19,8 @@ Follow the steps below to set up the project locally.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/sankalp-78/Lawbot1.git
-   cd Lawbot1
+   git clone https://github.com/sankalp-78/LawBot2.git
+   cd LawBot2
 ````
 
 2. Set up environment variables:
@@ -71,7 +71,7 @@ Follow the steps below to set up the project locally.
 
 ## Contributing
 
-We welcome contributions to improve LawBot1! To contribute:
+We welcome contributions to improve LawBot2! To contribute:
 
 1. Fork this repository.
 2. Create a new branch:
@@ -99,7 +99,7 @@ We welcome contributions to improve LawBot1! To contribute:
 
 ---
 
-Thank you for using LawBot1!
+Thank you for using LawBot2!
 
 ```
 
