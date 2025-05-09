@@ -93,7 +93,7 @@ We welcome contributions to improve LawBot2! To contribute:
 ## Contact
 
 * **Author**: Sankalp
-* **GitHub**: [sankalp-78](https://github.com/sankalp-78) , [K-V-Sai-Jaswanth](https://github.com/K-V-Sai-Jaswanth)
+* **GitHub**: [sankalp-78](https://github.com/sankalp-78) , [K-V-Sai-Jaswanth](https://github.com/K-V-Sai-Jaswanth), [Sudheesh](https://github.com/Sudheesh313)
 
 ---
 
