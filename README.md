@@ -66,6 +66,7 @@ Follow the steps below to set up the project locally.
 * **Backend**: Node.js, Express.js
 * **AI Integration**: OpenAI API
 * **Database**: MongoDB
+* **Speech Recognition**: Web Speech API / compatible libraries
 * **Environment Management**: dotenv
 * **Deployment**: GitHub
 
