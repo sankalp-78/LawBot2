@@ -10,6 +10,8 @@
 - **AI-Powered Legal Assistance**: Get answers to legal questions using OpenAI's language model.
 - **Document Parsing**: Extract and analyze legal content from uploaded documents.
 - **Case Tracking**: Maintain and monitor progress on legal cases.
+- **Voice Input Support**: Use speech-to-text functionality to ask questions via voice.
+- **Enhanced UI**: Redesigned, simpler, and more user-friendly interface.
 - **Secure API Communication**: Uses environment variables to protect sensitive credentials.
 
 ## Getting Started
